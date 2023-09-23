@@ -18,21 +18,17 @@ class Character:
         self.name = name
 
     def attack(self):
-        """"""
+        """Рассчет атаки персонажа."""
         value_attack = DEFAULT_ATTACK + randint(*self.RANGE_VALUE_ATTACK)
         return (f'{self.name} нанёс противнику урон, равный {value_attack}')
 
     def defence(self):
-        """
-        Принимает на вход имя и класс персонажа.
-        Возвращает строку сообщения о блокированном персонажем уроне
-        в зависимости от его класса.
-        """
+        """Рассчет защиты персонажа."""
         value_defence = DEFAULT_DEFENCE + randint(*self.RANGE_VALUE_DEFENCE)
         return (f'{self.name} блокировал {value_defence} ед. урона.')
 
     def special(self):
-        """"""
+        """Рассчет специального умения персонажа."""
         return (f'{self.name} применил специальное умение '
                 f'"{self.SPECIAL_SKILL} {self.SPECIAL_BUFF}".')
 
@@ -41,6 +37,7 @@ class Character:
 
 
 class Warrior(Character):
+    """Описание класса Воин и его характеристики"""
     BRIEF_DESC_CHAR_CLASS = (' дерзкий воин ближнего боя. '
                              'Сильный, выносливый и отважный')
     RANGE_VALUE_ATTACK = (3, 5)
@@ -50,6 +47,7 @@ class Warrior(Character):
 
 
 class Mage(Character):
+    """Описание класса Маг и его характеристики"""
     BRIEF_DESC_CHAR_CLASS = (' находчивый воин дальнего боя. '
                              'Обладает высоким интеллектом')
     RANGE_VALUE_ATTACK = (5, 10)
@@ -59,6 +57,7 @@ class Mage(Character):
 
 
 class Healer(Character):
+    """Описание класса Лекарь и его характеристики"""
     BRIEF_DESC_CHAR_CLASS = (' могущественный заклинатель. '
                              'Черпает силы из природы, веры и духов')
     RANGE_VALUE_ATTACK = (-3, -1)
@@ -68,12 +67,7 @@ class Healer(Character):
 
 
 def choice_char_class(char_name: str) -> Character:
-    """
-    Возвращает строку с выбранным
-    классом персонажа.
-    """
-    # Добавили словарь, в котором соотносится ввод
-    #  пользователя и класс персонажа.
+    """Возвращает строку с выбранным классом персонажа."""
     game_classes = {'warrior': Warrior, 'mage': Mage, 'healer': Healer}
 
     approve_choice: str = None
@@ -92,10 +86,7 @@ def choice_char_class(char_name: str) -> Character:
 
 
 def start_training(character):
-    """
-    Принимает на вход имя и класс персонажа.
-    Возвращает сообщения о результатах цикла тренировки персонажа.
-    """
+    """Возвращает сообщения о результатах цикла тренировки персонажа."""
     command_methods = {
         'attack': character.attack,
         'defence': character.defence,
